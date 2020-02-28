@@ -1,0 +1,119 @@
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
+
+.header {
+    flex-flow: wrap row;
+    justify-content: space-between;
+    font-size: 1rem;
+    align-items: center;
+    max-width: 100%;
+    &__logo {
+        cursor: pointer;
+        margin-left: 20px;
+        padding: 4% 0 0 14%;
+        @include mobile() {
+            margin: 2rem 0 0 -2rem;
+        }
+        @include tablet() {
+            margin-top: 2rem;
+        }
+    }
+    &__menu {
+        float: right;
+        flex-wrap: wrap;
+        margin-right: 5rem;
+        padding: 4%;
+    }
+    &__menu a {
+        margin: 20px;
+        color: $VeryDarkcolor;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.4s;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .header__menu--link {
+        color: $Grayishcolor;
+        @include tablet() {
+            border-top: 1px solid black;
+            padding: 5px;
+        }
+    }
+    .fas {
+        color: $Grayishcolor;
+        @include mobile() {
+            display: none;
+        }
+        @include tablet() {
+            display: none;
+        }
+    }
+    &__show-btn,
+    &__hide-btn {
+        transition: 0.4s;
+        font-size: 30px;
+        cursor: pointer;
+        display: none;
+    }
+    &__show-btn {
+        float: right;
+    }
+    &__show-btn {
+        line-height: 100px;
+        margin: 8px 20px 7px 9px;
+    }
+    #chk {
+        position: absolute;
+        display: none;
+    }
+    @include tablet() {
+        &__show-btn,
+        &__hide-btn {
+            display: block;
+        }
+        &__menu {
+            display: none;
+            width: 60%;
+            height: 28vh;
+            background: white;
+            text-align: center;
+            line-height: normal;
+            transition: 0.7s;
+            z-index: 10;
+            position: absolute;
+            right: 1rem;
+            margin-right: 3rem;
+        }
+        &__menu a {
+            font-weight: bold;
+            color: $VeryDarkcolor;
+            margin: 10px;
+        }
+        &__hide-btn {
+            @include mobile() {
+                position: absolute;
+                bottom: 0rem;
+                right: 7.5rem;
+            }
+        }
+        #chk:checked~&__menu {
+            display: flex;
+            flex-direction: column;
+            right: -10;
+            box-shadow: 4px 4px 2px grey;
+            cursor: pointer;
+        }
+    }
+}

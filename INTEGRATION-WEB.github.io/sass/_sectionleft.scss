@@ -1,0 +1,28 @@
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+.container__left {
+    @include mobile() {}
+    &--img {
+        @include mobile() {
+            width: 100vw;
+            height: 30vh;
+            position: relative;
+            top: -2rem;
+            left: 5rem;
+        }
+    }
+}
+
+footer {
+    p {
+        text-align: center;
+        margin-top: 8rem;
+    }
+    @include mobile() {
+        display: none;
+    }
+}
